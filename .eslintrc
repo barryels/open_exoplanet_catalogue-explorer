@@ -1,0 +1,80 @@
+{
+	"env": {
+		"browser": true,
+		"commonjs": true
+	},
+	"parserOptions": {
+		"ecmaVersion": 5,
+		"sourceType": "script"
+	},
+	"plugins": [
+		"dependencies"
+	],
+	"rules": {
+		"strict": [
+			2,
+			"global"
+		],
+		"quotes": [
+			2,
+			"single"
+		],
+		"eqeqeq": [
+			2,
+			"smart"
+		],
+		"indent": [
+			2,
+			"tab",
+			{
+				"SwitchCase": 1
+			}
+		],
+		"semi": [
+			2,
+			"always"
+		],
+		"comma-dangle": [
+			2,
+			"always"
+		],
+		"max-params": [
+			1,
+			3
+		],
+		"max-depth": [
+			1,
+			2
+		],
+		"max-statements": [
+			1,
+			15
+		],
+		"complexity": [
+			1,
+			5
+		],
+		"no-unused-vars": [
+			2,
+			{
+				"vars": "all",
+				"args": "after-used",
+				"ignoreRestSiblings": false
+			}
+		],
+		"no-undef": [
+			2
+		],
+		"global-require": [
+			2
+		],
+		"dependencies/no-unresolved": 2,
+		"dependencies/case-sensitive": 2,
+		"dependencies/no-cycles": 2,
+		"dependencies/require-json-ext": 2
+	},
+	"globals": {
+		"require": false,
+		"module": false
+	}
+}
