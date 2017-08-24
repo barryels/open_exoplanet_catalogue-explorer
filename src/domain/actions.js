@@ -35,11 +35,16 @@ function fetchSystemsData() {
 
 	m.request({
 		method: 'GET',
-		url: './data/systems.json',
+		url: './data/systems.xml',
+		deserialize: function (value) {
+			return (new window.DOMParser()).parseFromString(value, 'text/xml');
+		},
 	})
 		.then(function (result) {
+			console.log(result);
 			store.Data.isLoading = false;
 			store.Data.content = result;
+			updateSearchResults(result);
 		});
 }
 

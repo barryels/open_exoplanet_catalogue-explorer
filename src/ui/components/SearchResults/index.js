@@ -9,7 +9,16 @@ function view(vnode) {
 	var contentView = m('div', 'Loading...');
 
 	if (!vnode.attrs.isLoading && vnode.attrs.data) {
-		contentView = m('pre', JSON.stringify(vnode.attrs.data.systems.system.length));
+		// console.log(vnode.attrs.data);
+		if (vnode.attrs.data.map) {
+			contentView = vnode.attrs.data.map(function (item) {
+				return m('div',
+					m('pre', item.getElementsByTagName('name')[0].textContent)
+				);
+			});
+		} else {
+			contentView = null;
+		}
 	}
 
 	return m('div.SearchResults', [

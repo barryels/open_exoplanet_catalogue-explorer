@@ -6,6 +6,7 @@ var m = require('mithril');
 
 var attrs = {
 	filterTypes: {
+		PLAIN_TEXT: {},
 		RANGE: {},
 		MULTI_RANGE: {},
 		SELECT: {},
@@ -29,24 +30,25 @@ function init() {
 
 
 function onFilterValueChange(vnode, filter, value) {
-	console.log('FilterGroup()', vnode, filter, value);
+	// console.log('FilterGroup()', vnode, filter, value);
 	filter.onChange(value);
 }
 
 
 function getAddFilterTriggerView(vnode) {
-	var children = '+';
+	var children = '+',
+		className = '.FilterGroup__AddFilterTrigger';
 
 	if (vnode.attrs.isAddFilterShowing) {
 		children = '-';
 	}
 
-	return m('button.addFilterTrigger', { onclick: vnode.attrs.onClickAddFilterTrigger.bind(null, vnode), }, children);
+	return m('div' + className, { onclick: vnode.attrs.onClickAddFilterTrigger.bind(null, vnode), }, children);
 }
 
 
 function getAddFilterView(vnode) {
-	var className = '.addFilter',
+	var className = '.FilterGroup__AddFilterMenu',
 		classNameModifier = '';
 
 	if (vnode.attrs.isAddFilterShowing) {
@@ -60,13 +62,33 @@ function getAddFilterView(vnode) {
 
 
 function getFilterTypeView(vnode, filter) {
-	console.log(vnode, filter);
-	return m('div', [
-		m('label', {}, filter.label),
-		m('select', {}, [
-			m('option', {}, 'Label: ' + filter.id),
-		]),
-	]);
+	var className = '.FilterGroup__Filter',
+		view = null;
+	console.warn(filter.type);
+
+	switch (filter.type) {
+		case attrs.filterTypes.PLAIN_TEXT:
+			view = m('div' + className, [
+				m('label', {}, filter.label),
+				m('input', {
+					type: 'text',
+					oninput: m.withAttr('value', function (v) {
+						vnode.attrs.onFilterValueChange(filter, v);
+					}),
+				}),
+			]);
+			break;
+		default:
+			view = m('div' + className, [
+				m('label', {}, filter.label),
+				m('select', {}, [
+					m('option', {}, 'Label: ' + filter.id),
+				]),
+			]);
+	}
+
+
+	return view;
 }
 
 
@@ -88,19 +110,17 @@ function oninit(vnode) {
 	}, this);
 
 	vnode.state = {
-		activeFilters: [],
+		activeFilters: vnode.attrs.activeFilters || [],
 	};
 
 	// Testing
-	vnode.state.activeFilters.push(availableFilters[0]);
+	// vnode.state.activeFilters.push(availableFilters[0]);
 }
 
 
 function view(vnode) {
 
 	return m('div.Search', [
-		m('pre', JSON.stringify(vnode.attrs, '', 2)),
-
 		getActiveFilters(vnode).map(function (filter) {
 			return getFilterTypeView(vnode, filter);
 		}),
@@ -108,6 +128,8 @@ function view(vnode) {
 		getAddFilterTriggerView(vnode),
 
 		getAddFilterView(vnode),
+
+		// m('pre', JSON.stringify(vnode.attrs, '', 2)),
 	]);
 }
 

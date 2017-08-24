@@ -34,13 +34,42 @@ function buildFilter(vnode, options) {
 }
 
 
+function getElementsByXPath(doc, xpath, parent) {
+	var results = [],
+		query = doc.evaluate(xpath, parent || doc, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null),
+		i = 0;
+
+	for (i = 0, length = query.snapshotLength; i < length; ++i) {
+		results.push(query.snapshotItem(i));
+	}
+
+	return results;
+}
+
+
+function onActiveFiltersChange(vnode, filters, filtersBefore) {
+	console.log('onActiveFiltersChange()', filters, filtersBefore);
+}
+
+
+function onFilterValueChange(vnode, filter, value) {
+	// console.log('onFilterValueChange()', filter.id, value);
+	var result = getElementsByXPath(store.Data.content, '//planet[./name[contains(., "' + value + '")]]');
+
+	actions.updateSearchResults(result);
+}
+
+
 function view(vnode) {
 	return m('div.Search', [
 		m(FilterGroup, {
 			onClickAddFilterTrigger: onClickAddFilterTrigger.bind(null),
 			isAddFilterShowing: store.Search.isAddFilterShowing,
-			onFilterValueChange: null,
-			onActiveFiltersChange: null,
+			onFilterValueChange: onFilterValueChange.bind(null, vnode),
+			onActiveFiltersChange: onActiveFiltersChange.bind(null, vnode),
+			activeFilters: [
+				buildFilter(vnode, { id: 'planet_name', label: 'Planet Name', type: FilterGroup.attrs.filterTypes.PLAIN_TEXT, }),
+			],
 			availableFilters: [
 				buildFilter(vnode, { id: 'planet_age', label: 'Planet Age (in Gyr)', type: FilterGroup.attrs.filterTypes.RANGE, }),
 				buildFilter(vnode, { id: 'planet_size', label: 'Planet Size', type: FilterGroup.attrs.filterTypes.RANGE, }),

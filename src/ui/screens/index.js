@@ -16,7 +16,7 @@ var home = {
 			m(Search),
 			m(SearchResults, {
 				isLoading: store.Data.isLoading,
-				data: store.Data.content,
+				data: store.Search.results,
 			}),
 		]);
 	},
