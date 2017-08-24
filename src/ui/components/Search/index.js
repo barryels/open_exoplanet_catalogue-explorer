@@ -44,8 +44,10 @@ function view(vnode) {
 			availableFilters: [
 				buildFilter(vnode, { id: 'planet_age', label: 'Planet Age (in Gyr)', type: FilterGroup.attrs.filterTypes.RANGE, }),
 				buildFilter(vnode, { id: 'planet_size', label: 'Planet Size', type: FilterGroup.attrs.filterTypes.RANGE, }),
+				buildFilter(vnode, { id: 'planet_mass', label: 'Planet Mass', type: FilterGroup.attrs.filterTypes.RANGE, }),
+				buildFilter(vnode, { id: 'planet_discovery_year', label: 'Planet Mass', type: FilterGroup.attrs.filterTypes.RANGE, }),
 				buildFilter(vnode, {
-					id: 'discovery_method', label: 'Discovery Method', type: FilterGroup.attrs.filterTypes.MULTI_SELECT, allowedOccurrences: -1,
+					id: 'planet_discovery_method', label: 'Discovery Method', type: FilterGroup.attrs.filterTypes.MULTI_SELECT, allowedOccurrences: -1,
 					options: [
 						{ label: 'Timing', value: 'timing', },
 						{ label: 'RV', value: 'rv', },

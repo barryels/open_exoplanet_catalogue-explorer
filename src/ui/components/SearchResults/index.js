@@ -8,8 +8,8 @@ var m = require('mithril');
 function view(vnode) {
 	var contentView = m('div', 'Loading...');
 
-	if (!vnode.attrs.isLoading) {
-		contentView = m('pre', JSON.stringify(vnode.attrs.data));
+	if (!vnode.attrs.isLoading && vnode.attrs.data) {
+		contentView = m('pre', JSON.stringify(vnode.attrs.data.systems.system.length));
 	}
 
 	return m('div.SearchResults', [
