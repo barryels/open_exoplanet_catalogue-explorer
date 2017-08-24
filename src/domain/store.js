@@ -5,6 +5,11 @@ var store = {
 	currentRoutePath: '/',
 	Search: {
 		isAddFilterShowing: false,
+		results: [],
+	},
+	Data: {
+		isLoading: false,
+		content: null,
 	},
 };
 

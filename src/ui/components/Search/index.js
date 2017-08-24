@@ -39,6 +39,8 @@ function view(vnode) {
 		m(FilterGroup, {
 			onClickAddFilterTrigger: onClickAddFilterTrigger.bind(null),
 			isAddFilterShowing: store.Search.isAddFilterShowing,
+			onFilterValueChange: null,
+			onActiveFiltersChange: null,
 			availableFilters: [
 				buildFilter(vnode, { id: 'planet_age', label: 'Planet Age (in Gyr)', type: FilterGroup.attrs.filterTypes.RANGE, }),
 				buildFilter(vnode, { id: 'planet_size', label: 'Planet Size', type: FilterGroup.attrs.filterTypes.RANGE, }),
@@ -52,8 +54,6 @@ function view(vnode) {
 					],
 				}),
 			],
-			onFilterValueChange: null,
-			onActiveFiltersChange: null,
 		}),
 	]);
 }

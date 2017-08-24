@@ -36,6 +36,8 @@ function init() {
 
 	window.addEventListener('hashchange', onRouteChange, false);
 	onRouteChange(null);
+
+	actions.fetchSystemsData();
 }
 
 init();

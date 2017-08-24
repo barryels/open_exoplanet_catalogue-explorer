@@ -4,13 +4,10 @@
 var m = require('mithril');
 
 
-var Search = require('./../components/Search');
-
-
 var _default = {
-	view: function () {
+	view: function (vnode) {
 		return m('div.layoutDefault', [
-			m(Search),
+			vnode.children,
 		]);
 	},
 };
