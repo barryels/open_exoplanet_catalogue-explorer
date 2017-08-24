@@ -9,7 +9,7 @@ var store = require('./store');
 
 function logActionCall(fnName, fn) {
 	var args = [].slice.call(arguments, 2);
-	console.log(fnName, args);
+	console.log('%cdomain.actions() -> ' + fnName, 'background: #222; color: #bada55; padding: 4px 10px;', args);
 	fn.apply(null, args);
 }
 
