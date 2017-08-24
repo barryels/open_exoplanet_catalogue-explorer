@@ -48,77 +48,28 @@ table {
 }
 
 /* App-specific */
+html  {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
 
 body {
 	font-family: Arial, sans-serif;
 	font-size: 16px;
 }
 
-.appBar {
-
-}
-
 .appBar ul li {
 	display: inline-block;
 	width: 33%;
 }
-.appBar ul li a {
+
+.addFilter {
+	display: none;
+}
+
+.addFilter--is-showing {
 	display: block;
-	padding: 10px 0;
-	text-align: center;
-}
-
-
-.layout {
-
-}
-
-.appSection {
-	padding: 20px;
-	transform: translate3d();
-}
-
-.appSection--forward {
-	animation: appSection-out-and-in-forward 1s;
-}
-
-.appSection--backward {
-	animation: appSection-out-and-in-backward 1s;
-}
-
-
-@keyframes appSection-out-and-in-forward {
-	0% {
-        transform: translateX(0);
-	}
-	50% {
-        transform: translateX(-320px);
-	}
-	51% {
-        transform: translateX(320px);
-    }
-    100% {
-		transform: translateX(0);
-	}
-}
-
-
-@keyframes appSection-out-and-in-backward {
-	0% {
-        transform: translateX(0);
-	}
-	50% {
-        transform: translateX(320px);
-	}
-	51% {
-        transform: translateX(-320px);
-    }
-    100% {
-		transform: translateX(0);
-	}
-}
-
-
-.screenContent {
-	background: #ccc;
 }

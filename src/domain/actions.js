@@ -16,6 +16,12 @@ function updateCurrentRoutePath(routePath) {
 }
 
 
+function toggleSearchIsAddFilterShowing() {
+	store.Search.isAddFilterShowing = !store.Search.isAddFilterShowing;
+}
+
+
 module.exports = {
 	updateCurrentRoutePath: logActionCall.bind(null, 'updateCurrentRoutePath', updateCurrentRoutePath),
+	toggleSearchIsAddFilterShowing: logActionCall.bind(null, 'toggleSearchIsAddFilterShowing', toggleSearchIsAddFilterShowing),
 };

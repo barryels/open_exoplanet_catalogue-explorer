@@ -1,6 +1,12 @@
 'use strict';
 
 
-module.exports = {
+var store = {
 	currentRoutePath: '/',
+	Search: {
+		isAddFilterShowing: false,
+	},
 };
+
+
+module.exports = store;
